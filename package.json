@@ -1,6 +1,6 @@
 {
     "name": "foundry-trackserver",
-    "version": "1.0.0",
+    "version": "3.3.3",
     "description": "High-throughput traffic ingestion service",
     "main": "server.js",
     "scripts": {
