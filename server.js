@@ -87,6 +87,8 @@ app.post('/track/visit-confirm', async (req, res) => {
 });
 
 app.get('/health', (req, res) => res.send('OK'));
+app.get('/wakeup', (req, res) => res.send('Wakeup call received'));
+
 
 app.listen(PORT, () => {
     console.log(`TrackServer running on port ${PORT}`);
