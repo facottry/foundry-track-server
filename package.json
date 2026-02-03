@@ -7,7 +7,7 @@
         "start": "node server.js",
         "dev": "nodemon server.js",
         "commit": "git add . && git commit -m 'update' && git push origin main",
-        "production": "git push -f origin main:PRODUCTION_DEPLOYMENT"
+        "production": "git push --force-with-lease origin main:PRODUCTION_DEPLOYMENT"
     },
     "dependencies": {
         "cors": "^2.8.5",
