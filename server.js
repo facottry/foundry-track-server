@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const uaparser = require('ua-parser-js');
 const geoip = require('geoip-lite');
 const { processEvent } = require('./worker');
+const serverHealthMonitor = require('./middleware/serverHealthMonitor');
 const { version } = require('./package.json');
 
 const app = express();
@@ -38,6 +39,7 @@ mongoose.connect(MONGO_URI)
 // Middleware
 app.use(cors({ origin: '*' }));
 app.use(express.json());
+app.use(serverHealthMonitor);
 
 // Add API_VERSION header to all responses
 app.use((req, res, next) => {
