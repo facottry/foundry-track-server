@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const uaparser = require('ua-parser-js');
 const geoip = require('geoip-lite');
 const { processEvent } = require('./worker');
+const { version } = require('./package.json');
 
 const app = express();
 const PORT = process.env.PORT || 5002;
@@ -34,8 +35,15 @@ mongoose.connect(MONGO_URI)
     .then(() => console.log('[TrackServer] Connected to MongoDB'))
     .catch(err => console.error('[TrackServer] MongoDB Connection Error:', err));
 
+// Middleware
 app.use(cors({ origin: '*' }));
 app.use(express.json());
+
+// Add API_VERSION header to all responses
+app.use((req, res, next) => {
+    res.setHeader('X-API-VERSION', version);
+    next();
+});
 
 /**
  * Purpose: High-speed ingestion for traffic confirmation beacons.
