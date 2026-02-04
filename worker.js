@@ -24,7 +24,7 @@ const ProductStats = require('./models/ProductStats');
 // If the copied 'models' folder DOES NOT contain User.js, we must define it here.
 // I'll check the copied models in a second. For now, preserving inline definitions to ensure safety.
 
-const UserSchema = new mongoose.Schema({ credits: Number });
+const UserSchema = new mongoose.Schema({ credits_balance: Number });
 // Check if model already exists to avoid OverwriteModelError
 const User = mongoose.models.User || mongoose.model('User', UserSchema);
 
@@ -75,11 +75,11 @@ const processEvent = async (eventPayload) => {
 
         if (!existingCharge) {
             const founder = await User.findById(founder_id);
-            if (founder && founder.credits > 0) {
+            if (founder && founder.credits_balance > 0) {
                 billable = true;
 
                 // Transaction: Deduct Credit
-                await User.findByIdAndUpdate(founder_id, { $inc: { credits: -1 } });
+                await User.findByIdAndUpdate(founder_id, { $inc: { credits_balance: -1 } });
 
                 // Create Ledger Entry
                 await VisitCreditLedger.create({
