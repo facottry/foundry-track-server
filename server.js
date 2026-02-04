@@ -8,7 +8,7 @@ const { processEvent } = require('./worker');
 
 const app = express();
 const PORT = process.env.PORT || 5002;
-const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/foundry';
+const MONGO_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/foundryfoundry';
 
 // In-Memory Queue
 const eventQueue = [];
