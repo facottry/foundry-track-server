@@ -1,6 +1,6 @@
 {
   "name": "@clicktory/trackserver",
-  "version": "3.3.15.15",
+  "version": "3.3.15.16",
   "description": "High-throughput traffic ingestion service",
   "main": "server.js",
   "scripts": {
